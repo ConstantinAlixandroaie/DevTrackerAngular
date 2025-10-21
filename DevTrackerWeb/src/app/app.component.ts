@@ -3,10 +3,22 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  template: `
+    <div class="app-shell">
+      <router-outlet></router-outlet>
+    </div>
+  `,
+  styles: [`
+    .app-shell {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f9fafb;
+      color: #333;
+      font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+  `]
 })
-export class AppComponent {
-  title = 'DevTrackerWeb';
-}
+export class AppComponent {}
