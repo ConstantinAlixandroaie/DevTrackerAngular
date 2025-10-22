@@ -9,7 +9,7 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
     RouterLinkActive,   
     ],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.css'
+  styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent {
 
