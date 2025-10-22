@@ -1,6 +1,7 @@
 // src/app/app.routes.ts
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
+import { LayoutComponent } from './layout/layout.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -44,15 +45,23 @@ export const routes: Routes = [
     component: LandingPageComponent, // standalone component can be used directly here
     pathMatch: 'full',
   },
-  {
-    path: 'boards',
-    loadChildren: () =>
-      import('./features/boards/boards.module').then(m => m.BoardsModule),
-  },
+ 
   {
     path: 'auth',
     loadChildren: () =>
       import('./features/auth/auth.module').then(m => m.AuthModule),
+  },
+   {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'boards',
+        loadChildren: () =>
+          import('./features/boards/boards.module').then(m => m.BoardsModule),
+      },
+      
+    ],
   },
   { path: '**', redirectTo: '' },
 ];
