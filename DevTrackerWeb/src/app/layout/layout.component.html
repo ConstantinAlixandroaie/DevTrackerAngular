@@ -1,0 +1,20 @@
+<!-- src/app/layout/layout.component.html -->
+<header class="topbar">
+  <div class="logo">DevTracker</div>
+
+  <nav class="nav-links">
+    <a routerLink="/boards" routerLinkActive="active">Boards</a>
+    <a routerLink="/tasks" routerLinkActive="active">Tasks</a>
+    <a routerLink="/notes" routerLinkActive="active">Notes</a>
+    <a routerLink="/tags" routerLinkActive="active">Tags</a>
+  </nav>
+
+  <div class="user-menu">
+    <button class="user-btn">Account</button>
+  </div>
+</header>
+
+<main class="content">
+  <router-outlet></router-outlet>
+</main>
+

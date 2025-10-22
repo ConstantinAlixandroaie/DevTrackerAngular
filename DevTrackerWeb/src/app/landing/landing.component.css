@@ -1,0 +1,21 @@
+.landing-shell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      background: linear-gradient(135deg, #f7f9fb, #e9ecf1);
+      color: #333;
+      font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #1976d2;
+}
+.hint {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+}
