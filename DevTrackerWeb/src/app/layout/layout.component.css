@@ -1,0 +1,62 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f7f9fb;
+  color: #333;
+  font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* --- Topbar --- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1976d2;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+
+    &.active {
+      border-bottom: 2px solid #fff;
+    }
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+.user-menu .user-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* --- Content Area --- */
+.content {
+  flex: 1;
+  padding: 1.5rem;
+}
