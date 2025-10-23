@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { LoginFormComponent } from '../../components/login-form/login-form.component';
-import { cp } from 'fs';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -10,14 +9,13 @@ import { cp } from 'fs';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-constructor(private authService: AuthService) { }
+constructor(private authService: AuthService,private router:Router) { }
 
   onLogin(credentials: { email: string; password: string }) {
     this.authService.login(credentials).subscribe({
       next: (response) => {
-        console.log('Login successful', response);
         localStorage.setItem('token', response.token);
-        //TODO navigate to boards
+        this.router.navigate(['/boards']);
         },
       error: (error) => {
         console.error('Login failed', error);
