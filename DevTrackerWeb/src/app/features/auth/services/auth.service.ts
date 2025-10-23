@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable,tap } from 'rxjs';
 import { ApiService } from '../../../core/services/api.service';
 
 interface LoginRequest{
   email: string;
   password: string;
 }
+
 interface LoginResponse{
   token: string;
   user:{
@@ -20,13 +21,42 @@ interface LoginResponse{
 })
 
 export class AuthService {
+  private readonly TOKEN_KEY='auth_token';
 
-  constructor(private api:ApiService) { }
+  isAuthenticated():boolean{
+    return this.getToken() !== null;
+  }
+
+  constructor(private api:ApiService) { 
+    const token = this.getToken();
+    if (token) {
+      this.api.setAuthHeader(token);
+    }
+  }
+
   login(credentials:LoginRequest):Observable<LoginResponse>{
-    return this.api.post<LoginResponse>('identity/login', credentials
-    );}
+    return this.api.post<LoginResponse>('identity/login', credentials).pipe(
+      tap(response => {
+        this.setToken(response.token);
+        this.api.setAuthHeader(response.token);
+      })
+    );
+  }
 
-  logout():void{
-    localStorage.removeItem('token');
+ logout():void{
+    this.clearToken();
+    this.api.clearAuthHeader();
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(this.TOKEN_KEY, token);
+  }
+
+  clearToken(): void {
+    localStorage.removeItem(this.TOKEN_KEY);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.TOKEN_KEY);
   }
 }
