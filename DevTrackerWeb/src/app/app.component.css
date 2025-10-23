@@ -1,9 +1,7 @@
-/* src/app/app.component.css */
-/* minimal reset for the placeholder home page */
+
 :host {
   display: block;
   min-height: 100vh;
   font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
-  background: #f7f7f9;
   color: #222;
 }

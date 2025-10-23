@@ -1,5 +1,4 @@
-// src/app/app.routes.ts
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { LandingComponent } from './landing/landing.component';
