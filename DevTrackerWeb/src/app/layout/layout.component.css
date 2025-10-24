@@ -4,6 +4,10 @@
   min-height: 100vh;
   color: #333;
   font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-image: url('../../assets/cat.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* --- Topbar --- */

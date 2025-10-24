@@ -1,12 +1,12 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
   <div class="formGroup">
-    <input  class="form-control" id="email" formControlName="email" type="email" placeholder="Email address" />
+    <input  class="form-control"  formControlName="email" type="email" placeholder="Email address" />
   </div>
   <div class="formGroup">  
-    <input class="form-control" id="password" formControlName="password" type="password" placeholder="Password" />
+    <input class="form-control"  formControlName="password" type="password" placeholder="Password" />
   </div>
   <div class="formGroup">  
-    <input class="form-control" id="password" formControlName="password" type="password" placeholder="Confirm Password" />
+    <input class="form-control"  formControlName="password" type="password" placeholder="Confirm Password" />
   </div>
     <button class="btn btn-primary form-control" type="submit" [disabled]="form.invalid && (form.dirty || form.touched)">Register</button>
 </form>
