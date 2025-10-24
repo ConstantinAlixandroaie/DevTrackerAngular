@@ -1,6 +1,5 @@
 import { Component, EventEmitter,Output } from '@angular/core';
-import { FormBuilder,FormGroup,Validators,FormControl,ReactiveFormsModule  } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { FormBuilder,FormGroup,Validators,FormControl,  } from '@angular/forms';
 
 interface LoginFormModel {
   email: FormControl<string>;
@@ -13,6 +12,7 @@ interface LoginFormModel {
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css',
 })
+
 export class LoginFormComponent {
   @Output() login = new EventEmitter<{ email: string; password: string }>();
 

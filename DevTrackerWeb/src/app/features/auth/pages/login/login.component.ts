@@ -23,7 +23,7 @@ ngOnInit() {
 
   onLogin(credentials: { email: string; password: string }) {
     this.authService.login(credentials).subscribe({
-      next: (response) => {
+      next: () => {
          this.router.navigateByUrl(this.returnUrl);
         },
       error: (error) => {

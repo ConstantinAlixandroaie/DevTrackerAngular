@@ -57,6 +57,13 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+     const token = localStorage.getItem(this.TOKEN_KEY);
+
+   if (!token || token === 'undefined' || token === 'null') {
+      localStorage.removeItem(this.TOKEN_KEY);
+      return null;
+   }
+
+  return token;
   }
 }
