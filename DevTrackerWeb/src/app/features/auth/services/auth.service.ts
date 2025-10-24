@@ -8,12 +8,10 @@ interface LoginRequest{
 }
 
 interface LoginResponse{
-  token: string;
-  user:{
-    id: number;
-    name: string;
-    email: string;
-  }
+  tokenType: string;
+  accessToken: string;
+  expiresIn: number;
+  refreshToken: string;
 }
 
 @Injectable({
@@ -23,10 +21,12 @@ interface LoginResponse{
 export class AuthService {
   private readonly TOKEN_KEY='auth_token';
 
-  isAuthenticated():boolean{
-    return this.getToken() !== null;
+ isAuthenticated():boolean{
+    const token = this.getToken();
+    console.log('[AuthService] isAuthenticated check:', token !== null);
+    return token !== null;
   }
-
+  
   constructor(private api:ApiService) { 
     const token = this.getToken();
     if (token) {
@@ -37,8 +37,9 @@ export class AuthService {
   login(credentials:LoginRequest):Observable<LoginResponse>{
     return this.api.post<LoginResponse>('identity/login', credentials).pipe(
       tap(response => {
-        this.setToken(response.token);
-        this.api.setAuthHeader(response.token);
+        console.log('[AuthService] Login successful, storing token.', response);
+        this.setToken(response.accessToken);
+        this.api.setAuthHeader(response.accessToken);
       })
     );
   }
@@ -47,6 +48,9 @@ export class AuthService {
     this.clearToken();
     this.api.clearAuthHeader();
   }
+  
+  //TODO:Implement refresh token logic
+  //TODO: Move to a dedicated TokenService
 
   setToken(token: string): void {
     localStorage.setItem(this.TOKEN_KEY, token);
@@ -57,9 +61,10 @@ export class AuthService {
   }
 
   getToken(): string | null {
-     const token = localStorage.getItem(this.TOKEN_KEY);
+    const token = localStorage.getItem(this.TOKEN_KEY);
+    console.log('Retrieved token from localStorage:', token);
 
-   if (!token || token === 'undefined' || token === 'null') {
+    if (!token || token === 'undefined' || token === 'null') {
       localStorage.removeItem(this.TOKEN_KEY);
       return null;
    }
