@@ -14,6 +14,20 @@ interface LoginResponse{
   refreshToken: string;
 }
 
+interface RegisterRequest{
+  email: string;
+  password: string;
+}
+
+interface RegisterResponse{
+  type: string;
+  title: string;
+  status: number;
+  instance: string;
+  errors: { 
+    [key: string]: string[]; 
+  };
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -37,7 +51,6 @@ export class AuthService {
   login(credentials:LoginRequest):Observable<LoginResponse>{
     return this.api.post<LoginResponse>('identity/login', credentials).pipe(
       tap(response => {
-        console.log('[AuthService] Login successful, storing token.', response);
         this.setToken(response.accessToken);
         this.api.setAuthHeader(response.accessToken);
       })
@@ -49,6 +62,18 @@ export class AuthService {
     this.api.clearAuthHeader();
   }
   
+  register(credentials:RegisterRequest):Observable<RegisterResponse>{
+    return this.api.post<RegisterResponse>('identity/register', credentials).pipe(
+      tap(response => {
+        if (response.status === 400) {
+          console.log('Registration failed:', response);
+        } else {
+          console.error('Registration succesful:', response);
+        }
+      })
+    );
+  }
+
   //TODO:Implement refresh token logic
   //TODO: Move to a dedicated TokenService
 

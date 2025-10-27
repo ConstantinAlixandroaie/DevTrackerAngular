@@ -16,16 +16,19 @@ export class RegisterComponent {
     private router:Router,
     private route:ActivatedRoute) { }
 
+    ngOnInit() {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/auth/login';
+    }
+
    onRegister(credentials: { email: string; password: string }) {
-    console.log('Registering user with credentials:', credentials);
-    // this.authService.login(credentials).subscribe({
-    //   next: () => {
-    //      this.router.navigateByUrl(this.returnUrl);
-    //     },
-    //   error: (error) => {
-    //     console.error('Register failed', error);
-    //   }
-    // });
+    this.authService.register(credentials).subscribe({
+      next: () => {
+         this.router.navigateByUrl(this.returnUrl);
+        },
+      error: (error) => {
+        console.error('Register failed', error);
+      }
+    });
   }
 
 }
