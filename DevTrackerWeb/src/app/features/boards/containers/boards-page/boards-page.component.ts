@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './boards-page.component.css'
 })
 export class BoardsPageComponent {
-
+  
 }
