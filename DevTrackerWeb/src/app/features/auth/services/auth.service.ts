@@ -42,24 +42,18 @@ export class AuthService {
   }
   
   constructor(private api:ApiService) { 
-    const token = this.getToken();
-    if (token) {
-      this.api.setAuthHeader(token);
-    }
   }
 
   login(credentials:LoginRequest):Observable<LoginResponse>{
     return this.api.post<LoginResponse>('identity/login', credentials).pipe(
       tap(response => {
         this.setToken(response.accessToken);
-        this.api.setAuthHeader(response.accessToken);
       })
     );
   }
 
  logout():void{
     this.clearToken();
-    this.api.clearAuthHeader();
   }
   
   register(credentials:RegisterRequest):Observable<RegisterResponse>{

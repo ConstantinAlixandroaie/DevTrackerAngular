@@ -1,41 +1,49 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { Console } from 'console';
 
 @Injectable({ providedIn: 'root' })
-
 export class ApiService {
   private baseUrl = environment.apiUrl;
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
   constructor(private http: HttpClient) {}
- 
-  setAuthHeader(token: string) {
-    this.httpOptions.headers = this.httpOptions.headers.set(
-      'Authorization',
-       `Bearer ${token}`
-      );
-  }
 
-  clearAuthHeader(): void {
-    this.httpOptions.headers = this.httpOptions.headers.delete('Authorization');
-  }
 
   get<T>(endpoint: string, options = {}): Observable<T> {
-    return this.http.get<T>(`${this.baseUrl}/${endpoint}`, options);
+    return this.http.get<T>(`${this.baseUrl}/${endpoint}`, {
+      ...options,
+      withCredentials: true 
+    });
   }
 
   post<T>(endpoint: string, body: any, options = {}): Observable<T> {
-    return this.http.post<T>(`${this.baseUrl}/${endpoint}`, body, options);
+    console.log('POST request to:', `${this.baseUrl}/${endpoint}`, 'with body:', body);
+    return this.http.post<T>(`${this.baseUrl}/${endpoint}`, body, {
+      ...options,
+      withCredentials: true
+    });
   }
 
-  delete<T>(endpoint: string, body: any) {
-    return this.http.delete<T>(`${this.baseUrl}/${endpoint}`, body);
+  delete<T>(endpoint: string, options = {}): Observable<T> {
+    return this.http.delete<T>(`${this.baseUrl}/${endpoint}`, {
+      ...options,
+      withCredentials: true
+    });
+  }
+
+  patch<T>(endpoint: string, body: any, options = {}): Observable<T> {
+    return this.http.patch<T>(`${this.baseUrl}/${endpoint}`, body, {
+      ...options,
+      withCredentials: true
+    });
+  }
+
+  put<T>(endpoint: string, body: any, options = {}): Observable<T> {
+    return this.http.put<T>(`${this.baseUrl}/${endpoint}`, body, {
+      ...options,
+      withCredentials: true
+    });
   }
 }

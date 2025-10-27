@@ -1,4 +1,8 @@
 <div class="boards-page">
   <h2>Boards</h2>
   <p>This is where your project boards will appear.</p>
+  <div>
+    <button class="btn btn-primary" (click)="openCreateBoardModal()">Create New Board</button>
+  </div>
 </div>
+<create-board-modal #createBoardModal (confirm)="onCreateBoardConfirm($event)"></create-board-modal>
