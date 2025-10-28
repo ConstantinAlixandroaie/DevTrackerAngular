@@ -1,9 +1,9 @@
 .board-grid {
-  padding: 1rem 2rem;
-  margin-bottom: 2rem; /* adds breathing space before the Create button below */
+  padding: 0rem 0rem;
+  margin-bottom: 2rem;
 }
 
 .board-grid .row {
-  row-gap: 1.5rem;
-  column-gap: 1.5rem;
+  --bs-gutter-x: 1rem; /* no horizontal gutter */
+  --bs-gutter-y: 1.5rem; /* keep vertical spacing */
 }
