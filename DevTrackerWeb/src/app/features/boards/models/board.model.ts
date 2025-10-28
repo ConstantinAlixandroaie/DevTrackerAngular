@@ -1,3 +1,5 @@
+import { UserLite } from "../../account/models/account.model";
+
 export interface BoardLite{
     id: number;
     title: string;
@@ -8,8 +10,10 @@ export interface Boards{
 }
 
 export interface Board extends BoardLite{
-    createdBy: string;
-    ownder: string;
+    tasks:string;
+    createdBy: UserLite;
+    ownder: UserLite;
+    users: UserLite[];
 }
 
 export interface CreateBoardRequest{
