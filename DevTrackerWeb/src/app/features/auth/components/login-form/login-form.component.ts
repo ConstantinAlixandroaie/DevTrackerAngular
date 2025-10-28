@@ -1,5 +1,6 @@
 import { Component, EventEmitter,Output } from '@angular/core';
 import { FormBuilder,FormGroup,Validators,FormControl,  } from '@angular/forms';
+import { LoginRequest } from '../../../account/models/account.model';
 
 interface LoginFormModel {
   email: FormControl<string>;
@@ -14,7 +15,7 @@ interface LoginFormModel {
 })
 
 export class LoginFormComponent {
-  @Output() login = new EventEmitter<{ email: string; password: string }>();
+  @Output() login = new EventEmitter<LoginRequest>();
 
   form: FormGroup<LoginFormModel>;
 

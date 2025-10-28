@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { CreateBoardRequest } from '../../models/board.model';
 
 type BootstrapModal = any;
 
@@ -14,13 +15,12 @@ type BootstrapModal = any;
 export class CreateBoardModalComponent {
   @Input() title = 'Create Board';
   @Input() confirmText?: string;
-  @Output() confirm = new EventEmitter<string>(); // Changed to emit string
+  @Output() confirm = new EventEmitter<CreateBoardRequest>();
 
   @ViewChild('modalElement') modalElement!: ElementRef;
   private modalInstance?: BootstrapModal;
   private isBrowser: boolean;
 
-  // FormControl for the input
   boardTitleControl = new FormControl('');
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
@@ -43,7 +43,7 @@ export class CreateBoardModalComponent {
       if (!this.modalInstance) {
         await this.initializeModal();
       }
-      this.boardTitleControl.reset(); // Clear the input when opening
+      this.boardTitleControl.reset();
       this.modalInstance?.show();
     }
   }
@@ -55,8 +55,8 @@ export class CreateBoardModalComponent {
   }
 
   onConfirm() {
-    const boardTitle = this.boardTitleControl.value || '';
-    this.confirm.emit(boardTitle); // Emit the board title
+    var createBoardRequest: CreateBoardRequest = { title: this.boardTitleControl.value || '' };
+    this.confirm.emit(createBoardRequest);
     this.hide();
   }
 

@@ -1,33 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable,tap } from 'rxjs';
 import { ApiService } from '../../../core/services/api.service';
+import { LoginRequest, LoginResponse,RegisterRequest,RegisterResponse } from '../../account/models/account.model';
 
-interface LoginRequest{
-  email: string;
-  password: string;
-}
-
-interface LoginResponse{
-  tokenType: string;
-  accessToken: string;
-  expiresIn: number;
-  refreshToken: string;
-}
-
-interface RegisterRequest{
-  email: string;
-  password: string;
-}
-
-interface RegisterResponse{
-  type: string;
-  title: string;
-  status: number;
-  instance: string;
-  errors: { 
-    [key: string]: string[]; 
-  };
-}
 @Injectable({
   providedIn: 'root'
 })
@@ -86,8 +61,7 @@ export class AuthService {
     if (!token || token === 'undefined' || token === 'null') {
       localStorage.removeItem(this.TOKEN_KEY);
       return null;
-   }
-
-  return token;
+    }
+    return token;
   }
 }
