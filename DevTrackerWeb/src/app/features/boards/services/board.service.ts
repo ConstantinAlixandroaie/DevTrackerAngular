@@ -21,11 +21,11 @@ export class BoardService {
   }
 
   createBoard(createBoardRequest:CreateBoardRequest):Observable<Board>{
-    return this.api.post<Board>('board/create',{createBoardRequest});
+    return this.api.post<Board>('board/create',createBoardRequest);
   }
 
   updateBoard(updateBoardRequest:UpdateBoardRequest):Observable<Board>{
-    return this.api.patch<Board>(`board/update`,{updateBoardRequest});
+    return this.api.patch<Board>(`board/update`,updateBoardRequest);
   }
   
   deleteBoard(id:number):Observable<void>{

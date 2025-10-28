@@ -1,0 +1,25 @@
+.boards-page {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.page-header h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: aliceblue;
+}
+
+.page-header .btn {
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+}
