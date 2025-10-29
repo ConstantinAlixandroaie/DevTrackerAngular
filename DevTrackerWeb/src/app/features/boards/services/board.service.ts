@@ -17,7 +17,6 @@ export class BoardService {
     var response= this.api.get<Boards>('board').pipe(
       tap((data)=>this.boardsSubject.next(data))
     );
-    console.log(response);
     return response;
   }
 

@@ -12,7 +12,6 @@ export class AuthService {
 
  isAuthenticated():boolean{
     const token = this.getToken();
-    console.log('[AuthService] isAuthenticated check:', token !== null);
     return token !== null;
   }
   
@@ -56,7 +55,6 @@ export class AuthService {
 
   getToken(): string | null {
     const token = localStorage.getItem(this.TOKEN_KEY);
-    console.log('Retrieved token from localStorage:', token);
 
     if (!token || token === 'undefined' || token === 'null') {
       localStorage.removeItem(this.TOKEN_KEY);

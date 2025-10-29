@@ -23,7 +23,6 @@ export class BoardComponent {
   }
 
   onUpdateConfirm(update: UpdateBoardRequest) {
-    console.log('Update confirmed in BoardComponent:', update);
-  this.boardService.updateBoard(update).subscribe();
-}
+    this.boardService.updateBoard(update).subscribe();
+  }
 }

@@ -57,7 +57,6 @@ export class UpdateBoardComponent {
   
     onConfirm() {
       var updateBoardRequest: UpdateBoardRequest = {id:this.boardId, title: this.boardTitleControl.value || '' };
-      console.log('Emitting update:', updateBoardRequest);
       this.confirm.emit(updateBoardRequest);
     }
   
