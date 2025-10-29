@@ -7,22 +7,27 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalLabel">Create Board</h5>
+        <h5 class="modal-title" id="modalLabel">Update Board</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
          <div class="formGroup">  
-          <input 
+            <input 
+            class="form-control"
+            value={{boardId}}
+            type="hidden"
+            [formControl]="boardTitleControl"/>
+          <input
+            value={{title}} 
             class="form-control" 
             [formControl]="boardTitleControl" 
-            placeholder="Board Title" 
-          />
+            placeholder="Board Title"/>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" (click)="onConfirm()">
-           'Save Changes'
+           Save Changes
         </button>
       </div>
     </div>

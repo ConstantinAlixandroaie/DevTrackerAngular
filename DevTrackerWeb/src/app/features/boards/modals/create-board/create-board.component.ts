@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild, ElementRef, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CreateBoardRequest } from '../../models/board.model';
@@ -13,8 +13,6 @@ type BootstrapModal = any;
   styleUrls: ['./create-board.component.css'],
 })
 export class CreateBoardModalComponent {
-  @Input() title = 'Create Board';
-  @Input() confirmText?: string;
   @Output() confirm = new EventEmitter<CreateBoardRequest>();
 
   @ViewChild('modalElement') modalElement!: ElementRef;

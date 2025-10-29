@@ -38,7 +38,8 @@ export class BoardService {
   }
 
   updateBoard(updateBoardRequest:UpdateBoardRequest):Observable<Board>{
-    return this.api.patch<Board>(`board/update`,updateBoardRequest).pipe(
+    return this.api.patch<{board:Board}>(`board/update`,updateBoardRequest).pipe(
+      map(response => response.board),
       tap((updatedBoard)=>{
         const currentBoards = this.boardsSubject.value;
         const updatedBoards = currentBoards.boards.map(b => b.id === updatedBoard.id ? updatedBoard : b);

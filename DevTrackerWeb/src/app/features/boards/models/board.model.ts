@@ -22,5 +22,5 @@ export interface CreateBoardRequest{
 
 export interface UpdateBoardRequest{
     id:number;
-    boardTitle:string;
+    title:string;
 }
