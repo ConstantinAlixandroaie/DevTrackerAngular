@@ -21,8 +21,8 @@ ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/boards';
   }
 
-  onLogin(credentials: { email: string; password: string }) {
-    this.authService.login(credentials).subscribe({
+  onLogin(loginRequest: { email: string; password: string }) {
+    this.authService.login(loginRequest).subscribe({
       next: () => {
          this.router.navigateByUrl(this.returnUrl);
         },

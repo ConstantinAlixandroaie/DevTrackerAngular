@@ -1,0 +1,8 @@
+<div class="board-grid">
+  <div class="row row-cols-6 row-cols-md-4 row-cols-sm-3 g-4">
+    <app-board
+      *ngFor="let board of (boardsCollection$ | async)?.boards"
+      [board]="board">
+    </app-board>
+  </div>
+</div>

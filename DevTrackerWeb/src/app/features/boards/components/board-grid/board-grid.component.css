@@ -1,0 +1,9 @@
+.board-grid {
+  padding: 0rem 0rem;
+  margin-bottom: 2rem;
+}
+
+.board-grid .row {
+  --bs-gutter-x: 1rem; /* no horizontal gutter */
+  --bs-gutter-y: 1.5rem; /* keep vertical spacing */
+}
