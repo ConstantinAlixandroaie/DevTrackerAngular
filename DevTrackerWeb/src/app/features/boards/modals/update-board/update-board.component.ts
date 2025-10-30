@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { UpdateBoardRequest } from '../../models/board.model';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -12,6 +12,8 @@ import { ModalService } from '../../services/modal.service';
 })
 
 export class UpdateBoardComponent {
+  @Input() boardId!: number;
+  @Input() boardTitle!: string;
   @Output() confirm = new EventEmitter<UpdateBoardRequest>();
   @ViewChild('modalElement') modalElement!: ElementRef;
 
