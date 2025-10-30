@@ -7,26 +7,23 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalLabel">Update Board</h5>
+        <h5 class="modal-title" id="modalLabel">Delete Board {{title}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-         <div class="formGroup">  
+        <div class="formGroup">  
             <input 
             class="form-control"
             type="hidden"
             [formControl]="boardIdControl"/>
-          <input
-            class="form-control" 
-            [formControl]="boardTitleControl" 
-            placeholder={{boardTitleControl.value}}/>
         </div>
+        <p>Are you sure you want to delete {{title}} task board?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="onConfirm()">
-          <i class="bi bi-pencil"></i>
-           Save Changes
+        <button type="button" class="btn btn-outline-danger" (click)="onConfirm()">
+          <i class="bi bi-trash"></i>
+           Delete Board
         </button>
       </div>
     </div>

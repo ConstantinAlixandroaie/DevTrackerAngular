@@ -1,7 +1,8 @@
-import { Component, Output, EventEmitter, ViewChild, ElementRef, PLATFORM_ID, Inject } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CreateBoardRequest } from '../../models/board.model';
+import { ModalService } from '../../services/modal.service';
 
 type BootstrapModal = any;
 
@@ -17,50 +18,34 @@ export class CreateBoardModalComponent {
 
   @ViewChild('modalElement') modalElement!: ElementRef;
   private modalInstance?: BootstrapModal;
-  private isBrowser: boolean;
 
   boardTitleControl = new FormControl('');
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(this.platformId);
-  }
+  constructor(private modalService: ModalService) {}
 
   async ngAfterViewInit() {
-    if (this.isBrowser) {
-      await this.initializeModal();
-    }
-  }
-
-  private async initializeModal() {
-    const { Modal } = await import('bootstrap');
-    this.modalInstance = new Modal(this.modalElement.nativeElement);
+   this.modalInstance = await this.modalService.createModal(this.modalElement.nativeElement);
   }
 
   async show() {
-    if (this.isBrowser) {
-      if (!this.modalInstance) {
-        await this.initializeModal();
-      }
       this.boardTitleControl.reset();
-      this.modalInstance?.show();
-    }
+      this.boardTitleControl.setValue(this.boardTitleControl.value);
+      this.modalService.show(this.modalInstance);
   }
 
   hide() {
-    if (this.isBrowser) {
-      this.modalInstance?.hide();
-    }
+    this.modalService.hide(this.modalInstance);
   }
 
   onConfirm() {
     var createBoardRequest: CreateBoardRequest = { title: this.boardTitleControl.value || '' };
-    this.confirm.emit(createBoardRequest);
     this.hide();
+    setTimeout(() => {
+      this.confirm.emit(createBoardRequest);
+    }, 150);
   }
 
   ngOnDestroy() {
-    if (this.isBrowser && this.modalInstance) {
-      this.modalInstance.dispose();
-    }
+   this.modalService.dispose(this.modalInstance);
   }
 }
